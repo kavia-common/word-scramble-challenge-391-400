@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import './components/components.css';
+import { Button, Navbar } from './components';
 import {
   shuffleWord,
   normalizeInput,
@@ -135,18 +137,10 @@ function App() {
 
   return (
     <div className="App" style={appStyle}>
-      <h1
-        style={{
-          fontSize: '2.3rem',
-          margin: '2rem 0 0.75rem 0',
-          letterSpacing: "-0.5px",
-          color: COLORS.primary,
-          fontWeight: 700,
-          fontFamily: "inherit"
-        }}
-      >
-        Word Scramble Challenge
-      </h1>
+      <Navbar
+        title="Word Scramble Challenge"
+        // tagline="Unscramble the letters, have fun learning!"
+      />
 
       <div style={cardStyle} role="main" aria-label="Word scramble game card">
         {/* Scrambled word */}
@@ -209,27 +203,17 @@ function App() {
           <span id="guess-help" style={{ fontSize: "0.93em", color: "#64748b", marginBottom: "0.3em" }}>
             Unscramble the word above.
           </span>
-          <button
+          <Button
             type="submit"
-            style={{
-              background: COLORS.primary,
-              color: "#fff",
-              border: "none",
-              borderRadius: "9px",
-              padding: "0.72em 2.25em",
-              fontWeight: 600,
-              fontSize: "1.14rem",
-              cursor: userGuess.trim() ? "pointer" : "not-allowed",
-              opacity: userGuess.trim() ? 1 : 0.55,
-              marginBottom: "0.7em",
-              marginTop: "0.2em",
-              transition: "all 0.2s cubic-bezier(.5,.1,.32,1.1)"
-            }}
+            variant="primary"
+            size="md"
+            className="game-submit-btn"
             disabled={!userGuess.trim() || isCorrect === true}
             aria-disabled={!userGuess.trim() || isCorrect === true}
+            style={{ marginBottom: "0.7em", marginTop: "0.2em", width: "auto" }}
           >
             Submit Guess
-          </button>
+          </Button>
         </form>
         {/* Live feedback */}
         <div
@@ -252,26 +236,21 @@ function App() {
           {feedback}
         </div>
 
-        <button
-          style={{
-            background: COLORS.surface,
-            color: COLORS.primary,
-            border: `1.5px solid ${COLORS.primary}`,
-            borderRadius: "7.5px",
-            padding: "0.6em 1.7em",
-            fontSize: "1.07rem",
-            fontWeight: 600,
-            cursor: "pointer",
-            marginTop: "1.15em",
-            boxShadow: "0 1.5px 13px rgba(59,130,246,0.07)",
-            transition: "all 0.18s cubic-bezier(.6,.3,.38,1.16)"
-          }}
+        <Button
           onClick={getNewPuzzle}
+          variant="secondary"
+          size="sm"
+          className="try-another-btn"
           aria-label="Try another word"
-          tabIndex={0}
+          style={{
+            marginTop: "1.15em",
+            border: `1.5px solid ${COLORS.primary}`,
+            color: COLORS.primary,
+            background: COLORS.surface
+          }}
         >
           Try another word
-        </button>
+        </Button>
       </div>
       {/* Footer */}
       <footer style={{
