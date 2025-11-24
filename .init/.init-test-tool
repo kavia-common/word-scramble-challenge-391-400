@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/tmp/kavia/workspace/code-generation/word-scramble-challenge-391-400/frontend_word_puzzle_game"
+}
