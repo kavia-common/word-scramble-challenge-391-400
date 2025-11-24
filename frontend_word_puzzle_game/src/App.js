@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import { shuffleWord } from './utils';
+import {
+  shuffleWord,
+  normalizeInput,
+  isAnagram,
+  pickRandomWord,
+  scrambleUnique,
+  getHint,
+  scoreGuess
+} from './utils';
 
 // List of 15+ words to randomize, all lowercase for simplicity
 const WORD_LIST = [
@@ -34,8 +42,9 @@ function App() {
 
   // Choose a random word and scramble it
   const getNewPuzzle = () => {
-    const word = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
-    let scrambled = shuffleWord(word);
+    const word = pickRandomWord(WORD_LIST);
+    // Use the new "scrambleUnique" which internally calls shuffleWord and ensures a different output
+    let scrambled = scrambleUnique(word);
     setCurrentWord(word);
     setScrambledWord(scrambled);
     setUserGuess('');
@@ -54,9 +63,12 @@ function App() {
   // Handle guess submit (button or Enter key)
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Trim and compare case-insensitive
-    if (!userGuess.trim()) return;
-    if (userGuess.trim().toLowerCase() === currentWord.toLowerCase()) {
+    // Normalize input and answer for robust checking
+    const normGuess = normalizeInput(userGuess);
+    const normAnswer = normalizeInput(currentWord);
+
+    if (!normGuess) return;
+    if (normGuess === normAnswer) {
       setIsCorrect(true);
       setFeedback('🎉 Correct! Well done!');
     } else {
@@ -72,6 +84,7 @@ function App() {
     setIsCorrect(null);
     setFeedback('');
     setShowAnim(false);
+    // Could use getHint, isAnagram, scoreGuess, etc., if expanding in the future
   };
 
   // Keyboard: allow Enter to submit form
