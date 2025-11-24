@@ -134,8 +134,19 @@ function App() {
   return (
     <div className="App" style={appStyle}>
       <Navbar
-        title="Word Scramble Challenge"
-        // tagline="Unscramble the letters, have fun learning!"
+        as="nav"
+        variant="default"
+        size="md"
+        brandArea={null} // fallback to logo + title + subtitle below
+        title="Word Scramble"
+        subtitle="Unscramble the letters, have fun learning!"
+        leftSlot={null}
+        centerSlot={null}
+        rightSlot={null}
+        sticky={false}
+        absolute={false}
+        showOnMobile={false}
+        className=""
       />
 
       <Card

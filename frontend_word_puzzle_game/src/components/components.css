@@ -337,6 +337,7 @@
   opacity: 0.75;
 }
 
+/* === NAVBAR COMPONENT (modular) === */
 .navbar {
   display: flex;
   align-items: center;
@@ -348,11 +349,94 @@
   box-shadow: 0 2.5px 13px 0 rgba(59, 130, 246, 0.07);
   min-height: 59px;
   width: 100%;
+  position: relative;
+  z-index: 12;
+  transition: background 0.18s, box-shadow 0.17s, border-bottom 0.12s;
+}
+
+/* Variants */
+.navbar--transparent {
+  background: transparent !important;
+  box-shadow: none;
+  border-bottom: none;
+}
+.navbar--elevated {
+  box-shadow: 0 7px 34px 3px rgba(59,130,246,0.14), 0 2.5px 18px 0 rgba(30,41,59,0.11) !important;
+  background: var(--surface);
+}
+.navbar--bordered {
+  border-bottom: 2.2px solid #e2e8f0 !important;
+  background: var(--surface);
+  box-shadow: none !important;
+}
+
+/* Sizes */
+.navbar--sm { min-height: 44px; font-size: 0.97em; padding: 0.56rem 1rem; }
+.navbar--md { min-height: 59px; font-size: 1.05em;}
+.navbar--lg { min-height: 70px; font-size: 1.18em; padding-top: 1.3rem; padding-bottom: 1.3rem;}
+
+/* Sticky positioning */
+.navbar--sticky {
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--surface);
+}
+.navbar--absolute {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Layout: children as slot sections */
+.navbar__section {
+  display: flex;
+  align-items: center;
+}
+.navbar__left {
+  flex: 0 0 auto;
+  min-width: 0;
+  gap: 0.7rem;
+}
+.navbar__center {
+  flex: 1 1 auto;
+  justify-content: center;
+  display: flex;
+  min-width: 0;
+}
+.navbar__right {
+  flex: 0 0 auto;
+  min-width: 0;
+  justify-content: flex-end;
+  gap: 0.48rem;
+}
+
+/* Brand: logo+title+subtitle cluster */
+.navbar__brandarea {
+  display: flex;
+  align-items: center;
+  gap: 0.33em;
+}
+.navbar__logo {
+  display: inline-block;
+  vertical-align: middle;
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+  margin-right: 0.78em;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 1.5px 7.5px 0 rgba(59,130,246,0.08);
 }
 .navbar__main {
   display: flex;
   flex-direction: column;
-  gap: 0.05em;
+  gap: 0.1em;
 }
 .navbar__title {
   font-size: 1.32rem;
@@ -362,27 +446,87 @@
   font-family: inherit;
   line-height: 1.15;
 }
-.navbar__tagline {
+.navbar__subtitle {
   font-size: 1rem;
   font-weight: 400;
   color: var(--secondary);
   letter-spacing: -0.17px;
-  margin-top: 1.5px;
+  margin-top: 2px;
 }
-.navbar__actions {
+
+.navbar__actions { 
+  /* Legacy right actions */
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
+
+.navbar__toggle-btn {
+  background: none;
+  border: none;
+  padding: 0.08em 0.6em;
+  margin-right: 0.2em;
+  font-size: 1.7em;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: background 0.12s, color 0.15s;
+}
+.navbar__toggle-btn:focus-visible, .navbar__toggle-btn:active {
+  background: rgba(59,130,246,0.12);
+  outline: 2px solid var(--primary);
+}
+.navbar__toggle-icon {
+  display: flex;
+}
+
+.navbar__collapse {
+  width: 100%;
+  padding-top: 0.45em;
+  padding-bottom: 0.87em;
+  background: var(--surface);
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 7px 18px 0 rgba(59,130,246,0.11);
+  animation: navbar-fade-in 0.23s cubic-bezier(.52,.1,.43,.98) both;
+  border-bottom: 1.7px solid #e2e8f0;
+}
+.navbar__collapse--open {
+  display: flex !important;
+}
+
+@keyframes navbar-fade-in {
+  0% { opacity: 0; transform: translateY(-10px);}
+  100% { opacity: 1; transform: none;}
+}
+
+/* Responsive: stack, collapse, adjust size */
 @media (max-width: 600px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.1em;
+    gap: 0.09em;
     padding: 0.55rem 2vw 0.55rem 2vw;
   }
+  .navbar__main { gap: 0.01em;}
   .navbar__title { font-size: 1.09rem;}
-  .navbar__tagline { font-size: 0.91rem; }
-  .navbar__actions { margin-top: 0.28em;}
+  .navbar__subtitle { font-size: 0.91rem; }
+  .navbar__actions, .navbar__right { margin-top: 0.28em;}
+  .navbar__collapse {
+    border-radius: 0 0 10px 10px;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-bottom: 1.8px solid #e2e8f0;
+  }
+  /* Hide center slot when collapsed, show in collapse */
+  .navbar__center {
+    display: none!important;
+  }
+  .navbar__collapse .navbar__center {
+    display: flex!important;
+    margin-bottom: 0.62em;
+  }
 }
 
