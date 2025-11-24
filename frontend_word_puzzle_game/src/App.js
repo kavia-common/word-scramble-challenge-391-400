@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import './components/components.css';
-import { Button, Navbar } from './components';
+import { Button, Navbar, Card } from './components';
 import {
   shuffleWord,
   normalizeInput,
@@ -113,12 +113,8 @@ function App() {
       animation: showAnim ? 'shakeX 0.45s cubic-bezier(.36,.07,.19,.97) both' : 'none'
     };
   }
-  // Main card styles
+  // Main card style for width/margin/container (removes visual, leaves only sizing!)
   const cardStyle = {
-    background: COLORS.card,
-    boxShadow: `0 6px 32px 6px ${COLORS.cardShadow}`,
-    borderRadius: '20px',
-    padding: '2rem 1.5rem 1.25rem 1.5rem',
     width: 'min(92vw, 400px)',
     margin: '2.5rem auto 2rem auto',
     display: 'flex',
@@ -142,7 +138,15 @@ function App() {
         // tagline="Unscramble the letters, have fun learning!"
       />
 
-      <div style={cardStyle} role="main" aria-label="Word scramble game card">
+      <Card
+        title="Word Scramble"
+        style={cardStyle}
+        rounded="lg"
+        variant="elevated"
+        padded
+        role="main"
+        aria-label="Word scramble game card"
+      >
         {/* Scrambled word */}
         <div
           style={{
@@ -251,7 +255,7 @@ function App() {
         >
           Try another word
         </Button>
-      </div>
+      </Card>
       {/* Footer */}
       <footer style={{
         marginTop: "2.5rem",

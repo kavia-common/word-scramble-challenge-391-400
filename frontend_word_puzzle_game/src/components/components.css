@@ -9,6 +9,78 @@
   --text: #111827;
 }
 
+/* === CARD COMPONENT === */
+/* Base container, follows theme */
+.kavia-card {
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 14px;
+  box-shadow: 0 1.5px 10px 0 rgba(59, 130, 246, 0.06);
+  border: none;
+  transition: box-shadow .18s, border-color .15s, background .14s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.card--padded {
+  padding: 1.63rem 1.6rem 1.13rem 1.6rem;
+}
+.card--rounded-sm { border-radius: 8px !important; }
+.card--rounded-md { border-radius: 14px !important; }
+.card--rounded-lg { border-radius: 22px !important; }
+.card--elevated {
+  box-shadow: 0 6px 32px 6px rgba(59,130,246,0.12), 0 2.5px 12px 0 rgba(30,41,59,0.06);
+}
+.card--outlined {
+  border: 1.7px solid #e2e8f0;
+  background: var(--surface);
+  box-shadow: none;
+}
+.card--hoverable:hover:not([disabled]):not([aria-disabled="true"]),
+.card--hoverable:focus-visible:not([disabled]):not([aria-disabled="true"]) {
+  box-shadow: 0 6px 31px 7px rgba(59,130,246,0.16), 0 2.5px 13px 0 rgba(30,41,59,0.08);
+  background: #f7fafd;
+  cursor: pointer;
+}
+.card--interactive {
+  cursor: pointer;
+  user-select: none;
+}
+.card--interactive:focus-visible {
+  outline: 2.5px solid var(--primary);
+  box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.19);
+}
+
+/* Header, body, footer */
+.card__header {
+  margin-bottom: 0.65em;
+}
+.card__title {
+  font-size: 1.33rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--primary);
+  margin: 0 0 0.19em 0;
+  line-height: 1.09;
+}
+.card__subtitle {
+  color: var(--secondary);
+  font-size: 1.02rem;
+  margin-top: 2.5px;
+}
+.card__body {
+  flex: 1 1 auto;
+}
+.card__footer {
+  margin-top: 1.2em;
+  border-top: 1px solid #e5e7eb;
+  color: var(--secondary);
+  font-size: 0.99em;
+  padding-top: 0.5em;
+}
+
 .btn {
   min-width: 2.4em;
   display: inline-flex;
