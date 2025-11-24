@@ -39,6 +39,7 @@
   transform: scale(0.97);
 }
 
+/* Solid (default) */
 .btn--primary {
   background: var(--primary);
   color: #fff;
@@ -75,6 +76,91 @@
 .btn--danger:focus-visible {
   background: #b91c1c;
 }
+/* Link variant */
+.btn--link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  text-decoration: underline;
+  box-shadow: none;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+.btn--link:hover,
+.btn--link:focus-visible {
+  background: none;
+  color: #2563eb;
+  text-decoration: underline;
+  opacity: 0.83;
+}
+/* Outline variant */
+.btn--outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btn--outline-secondary {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+.btn--outline-success {
+  color: var(--success);
+  border-color: var(--success);
+}
+.btn--outline-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+.btn--outline-primary:hover,
+.btn--outline-primary:focus-visible {
+  background: rgba(59, 130, 246, 0.07);
+}
+.btn--outline-secondary:hover,
+.btn--outline-secondary:focus-visible {
+  background: rgba(100, 116, 139, 0.065);
+}
+.btn--outline-success:hover,
+.btn--outline-success:focus-visible {
+  background: rgba(6,182,212,0.085);
+}
+.btn--outline-danger:hover,
+.btn--outline-danger:focus-visible {
+  background: rgba(239,68,68,0.075);
+}
+.btn--outline-link, .btn--ghost-link {
+  background: none;
+  color: var(--primary);
+  border: none;
+  text-decoration: underline;
+}
+/* Ghost variant: (transparent background, colored text, subtle bg on hover) */
+.btn--ghost {
+  background: transparent !important;
+  border: none !important;
+  color: var(--primary);
+  box-shadow: none;
+}
+.btn--ghost-primary { color: var(--primary);}
+.btn--ghost-secondary { color: var(--secondary);}
+.btn--ghost-success { color: var(--success);}
+.btn--ghost-danger { color: var(--danger);}
+.btn--ghost-link { color: var(--primary);}
+.btn--ghost-primary:hover, .btn--ghost-primary:focus-visible {
+  background: rgba(59,130,246,0.09)!important;
+}
+.btn--ghost-secondary:hover, .btn--ghost-secondary:focus-visible {
+  background: rgba(100,116,139,0.09)!important;
+}
+.btn--ghost-success:hover, .btn--ghost-success:focus-visible {
+  background: rgba(6,182,212,0.12)!important;
+}
+.btn--ghost-danger:hover, .btn--ghost-danger:focus-visible {
+  background: rgba(239,68,68,0.09)!important;
+}
+.btn--ghost-link:hover, .btn--ghost-link:focus-visible {
+  background: none !important;
+  color: #2563eb;
+}
 
 .btn--sm {
   font-size: 0.93rem;
@@ -96,6 +182,64 @@
   background: #e3eaf1;
   color: #b4b4b4;
   cursor: not-allowed;
+}
+
+/* Rounded options for new Button */
+.btn--rounded-sm { border-radius: 5px!important; }
+.btn--rounded-md { border-radius: 8px!important; }
+.btn--rounded-lg { border-radius: 18px!important; }
+.btn--rounded-full { border-radius: 999px!important; }
+
+/* Full width: fills parent */
+.btn--fullwidth {
+  width: 100%!important;
+  display: flex;
+}
+
+/* Icon-only variant: button is square, visually only icon */
+.btn--iconOnly {
+  min-width: 2.3em !important;
+  width: 2.7em !important;
+  height: 2.7em !important;
+  padding: 0 !important;
+  font-size: 1.32em !important;
+  justify-content: center;
+}
+.btn--iconOnly .btn__icon {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+/* Accessibly hidden but screen-reader visible helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Optional icon inside Button (left/right) */
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1em;
+  vertical-align: middle;
+  line-height: 1;
+  /* Not visually obstrusive; only minimal space for icons */
+}
+.btn__icon--left { margin-right: 0.44em; }
+.btn__icon--right { margin-left: 0.44em; }
+/* For loading state, dim content but spinner visible */
+.btn__content {
+  display: inline-block;
+}
+.btn__content--loading {
+  opacity: 0.73;
 }
 
 .btn__spinner {

@@ -208,6 +208,7 @@ function App() {
             variant="primary"
             size="md"
             className="game-submit-btn"
+            // solid primary for submit button
             disabled={!userGuess.trim() || isCorrect === true}
             aria-disabled={!userGuess.trim() || isCorrect === true}
             style={{ marginBottom: "0.7em", marginTop: "0.2em", width: "auto" }}
@@ -239,14 +240,13 @@ function App() {
         <Button
           onClick={getNewPuzzle}
           variant="secondary"
+          outline={true}
           size="sm"
           className="try-another-btn"
           aria-label="Try another word"
           style={{
             marginTop: "1.15em",
-            border: `1.5px solid ${COLORS.primary}`,
-            color: COLORS.primary,
-            background: COLORS.surface
+            // Remove manual border/color/bg (handled by outline secondary)
           }}
         >
           Try another word
